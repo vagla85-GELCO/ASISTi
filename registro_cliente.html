@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASISti - Registro de Cliente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gelco-blue { background-color: #004A99; }
+        .category-btn.active { 
+            background-color: #004A99; 
+            color: white; 
+            border-color: #004A99; 
+        }
+        .hidden-list { display: none; }
+        .show-list { 
+            display: block; 
+            animation: fadeIn 0.3s ease-out; 
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(-5px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+    </style>
+</head>
+<body class="bg-slate-50 pb-20 font-sans text-left">
+    
+    <header class="gelco-blue text-white p-5 shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="bg-white p-2 rounded-xl shadow-sm">
+                    <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+                        <path d="M30 20H70L65 40C65 40 85 45 85 65C85 85 70 90 50 90C30 90 15 85 15 65C15 45 35 40 35 40L30 20Z" fill="#004A99"/>
+                        <path d="M40 65H60M50 55V75" stroke="white" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="text-left">
+                    <h1 class="text-xl font-black tracking-tighter text-white leading-none">ASISti</h1>
+                    <p class="text-blue-200 text-[8px] uppercase font-bold tracking-widest mt-1">Ficha Comercial de Cliente</p>
+                </div>
+            </div>
+            <a href="index.html" class="hover:bg-white/10 p-2 rounded-lg transition-all">
+                <i class="fas fa-home text-lg text-white"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4 md:p-8 space-y-6">
+        
+        <button onclick="window.history.back()" class="flex items-center gap-2 text-gray-500 hover:text-[#004A99] transition-all text-xs font-bold uppercase mb-4">
+            <i class="fas fa-chevron-left"></i> Volver al panel principal
+        </button>
+
+        <div class="bg-white p-8 rounded-3xl shadow-sm space-y-8 border border-slate-100">
+            
+            <section class="space-y-4">
+                <h2 class="text-[#004A99] font-black text-xs uppercase border-b pb-2 flex items-center">
+                    <i class="fas fa-id-card mr-2"></i> Identificación del Cliente
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Razón Social / Empresa" class="bg-slate-50 border p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" placeholder="NIT / Identificación Fiscal" class="bg-slate-50 border p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" placeholder="País / Ciudad" class="bg-slate-50 border p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                    <select class="bg-slate-50 border p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-500 font-medium text-gray-600">
+                        <option value="">Segmento de Mercado...</option>
+                        <option>Farmacéutico</option>
+                        <option>Alimenticio / Confitería</option>
+                        <option>Nutricional / Suplementos</option>
+                        <option>Técnico / Industrial</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="space-y-4">
+                <h2 class="text-[#004A99] font-black text-xs uppercase border-b pb-2 flex items-center">
+                    <i class="fas fa-user-tie mr-2"></i> Persona de Contacto
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input type="text" placeholder="Nombre de Contacto" class="bg-slate-50 border p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="email" placeholder="Email de Contacto" class="bg-slate-50 border p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="tel" placeholder="Teléfono de Contacto" class="bg-slate-50 border p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </section>
+
+            <section class="space-y-6 bg-slate-50 p-6 rounded-3xl border border-slate-200">
+                <h2 class="text-[#004A99] font-black text-xs uppercase border-b border-slate-300 pb-2 flex items-center">
+                    <i class="fas fa-tags mr-2"></i> Portafolio de Interés
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <button type="button" onclick="togglePortfolio('list-gelatina', this)" class="category-btn w-full flex items-center justify-between bg-white border-2 border-slate-200 p-4 rounded-2xl font-bold text-sm text-slate-600 transition-all hover:border-blue-500">
+                            <span><i class="fas fa-flask mr-2 text-blue-600"></i> GELATINA</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform"></i>
+                        </button>
+                        
+                        <div id="list-gelatina" class="hidden-list bg-white p-4 rounded-2xl border border-blue-100 shadow-inner">
+                            <p class="text-[9px] font-black text-blue-500 uppercase mb-3 tracking-widest">Seleccione Rango Bloom:</p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="flex items-center gap-2 text-xs font-medium text-gray-600 p-2 hover:bg-blue-50 rounded-lg cursor-pointer">
+                                    <input type="checkbox" class="accent-blue-600"> G200 - G220
+                                </label>
+                                <label class="flex items-center gap-2 text-xs font-medium text-gray-600 p-2 hover:bg-blue-50 rounded-lg cursor-pointer">
+                                    <input type="checkbox" class="accent-blue-600"> G220 - G240
+                                </label>
+                                <label class="flex items-center gap-2 text-xs font-medium text-gray-600 p-2 hover:bg-blue-50 rounded-lg cursor-pointer">
+                                    <input type="checkbox" class="accent-blue-600"> G240 - G260
+                                </label>
+                                <label class="flex items-center gap-2 text-xs font-medium text-gray-600 p-2 hover:bg-blue-50 rounded-lg cursor-pointer">
+                                    <input type="checkbox" class="accent-blue-600"> G260 - G280
+                                </label>
+                                <label class="flex items-center gap-2 text-xs font-medium text-gray-600 p-2 hover:bg-blue-50 rounded-lg cursor-pointer">
+                                    <input type="checkbox" class="accent-blue-600"> G280 - G300
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <button type="button" onclick="togglePortfolio('list-colageno', this)" class="category-btn w-full flex items-center justify-between bg-white border-2 border-slate-200 p-4 rounded-2xl font-bold text-sm text-slate-600 transition-all hover:border-blue-500">
+                            <span><i class="fas fa-dna mr-2 text-indigo-600"></i> COLÁGENO</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform"></i>
+                        </button>
+
+                        <div id="list-colageno" class="hidden-list bg-white p-4 rounded-2xl border border-blue-100 shadow-inner">
+                            <p class="text-[9px] font-black text-blue-500 uppercase mb-3 tracking-widest">Seleccione Categoría:</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-3 text-xs font-medium text-gray-600 p-3 hover:bg-blue-50 rounded-xl cursor-pointer">
+                                    <input type="checkbox" class="accent-blue-600"> CHD HD (Alta Densidad)
+                                </label>
+                                <label class="flex items-center gap-3 text-xs font-medium text-gray-600 p-3 hover:bg-blue-50 rounded-xl cursor-pointer">
+                                    <input type="checkbox" class="accent-blue-600"> C HP (Premium / Poro Fino)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <label class="block text-[10px] font-black text-gray-400 uppercase mb-2 ml-1">Descripción de Interés Técnico / Comercial</label>
+                    <textarea rows="4" placeholder="Detalle aplicaciones específicas, volúmenes proyectados o requisitos especiales de calidad..." class="w-full bg-white border border-slate-200 p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"></textarea>
+                </div>
+            </section>
+
+            <button onclick="procesarAccion(event, 'Perfil de cliente guardado con éxito')" 
+                    class="w-full bg-[#004A99] text-white py-5 rounded-2xl font-black text-xs uppercase shadow-xl hover:bg-blue-800 transition-all tracking-[0.2em] flex items-center justify-center gap-3">
+                Finalizar Registro <i class="fas fa-save"></i>
+            </button>
+        </div>
+    </main>
+
+    <footer class="text-center p-8 text-[9px] text-gray-400 uppercase tracking-[0.2em]">
+        ASISti | Gestión Técnica Grupo Gelco | 2026
+    </footer>
+
+    <script>
+        function togglePortfolio(id, btn) {
+            const list = document.getElementById(id);
+            const icon = btn.querySelector('.fa-chevron-down');
+            
+            // Cerrar el otro si se abre uno nuevo (opcional, para limpieza)
+            if (!list.classList.contains('show-list')) {
+                document.querySelectorAll('.hidden-list').forEach(el => el.classList.remove('show-list'));
+                document.querySelectorAll('.category-btn').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.fa-chevron-down').forEach(el => el.style.transform = 'rotate(0deg)');
+            }
+
+            if (list.classList.contains('show-list')) {
+                list.classList.remove('show-list');
+                btn.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                list.classList.add('show-list');
+                btn.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function procesarAccion(event, mensajeExito) {
+            const btn = event.currentTarget;
+            btn.disabled = true;
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Sincronizando...';
+
+            setTimeout(() => {
+                // Notificación "Excelente"
+                const alertBox = document.createElement('div');
+                alertBox.className = 'fixed top-10 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-8 py-4 rounded-2xl shadow-2xl z-[100] font-bold text-sm animate-bounce flex items-center gap-3';
+                alertBox.innerHTML = `<i class="fas fa-check-circle text-xl"></i> <span>ASISti: ${mensajeExito}</span>`;
+                document.body.appendChild(alertBox);
+
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1500);
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

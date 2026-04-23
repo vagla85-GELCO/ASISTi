@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASISti - Encuesta de Satisfacción Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gelco-blue { background-color: #004A99; }
+        /* Estilo para el velocímetro */
+        .gauge-container { position: relative; width: 200px; height: 100px; overflow: hidden; margin: 0 auto; }
+        .gauge-body { width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(from -90deg, #ef4444 0deg, #f59e0b 60deg, #10b981 120deg, #e2e8f0 120deg); position: absolute; top: 0; left: 0; }
+        .gauge-inner { width: 160px; height: 160px; background: #fff; border-radius: 50%; position: absolute; top: 20px; left: 20px; z-index: 2; }
+        .gauge-needle { width: 4px; height: 90px; background: #334155; position: absolute; bottom: 0; left: 50%; transform-origin: bottom center; transition: transform 0.3s ease-out; z-index: 3; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; cursor: pointer; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #004A99; cursor: pointer; margin-top: -10px; border: 3px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-slate-50 pb-20 font-sans text-left">
+
+    <header class="gelco-blue text-white p-10 text-center rounded-b-[3rem]">
+        <h1 class="text-2xl font-black uppercase tracking-tighter">Balanced Scorecard de Servicio</h1>
+        <p class="text-blue-100 text-xs font-bold uppercase mt-2">Su evaluación técnica nos ayuda a perfeccionar nuestros procesos</p>
+    </header>
+
+    <main class="max-w-xl mx-auto p-6 -mt-10 space-y-6">
+        <div class="bg-white p-8 rounded-[3rem] shadow-2xl border border-slate-100 space-y-12">
+            
+            <div class="space-y-6">
+                <div class="text-center">
+                    <h3 class="text-xs font-black text-slate-800 uppercase tracking-widest">1. Calificación de Agilidad Operativa</h3>
+                    <p id="desc-agilidad" class="text-[10px] font-bold text-slate-400 mt-2 uppercase tracking-tighter">Mueva la aguja para calificar</p>
+                </div>
+
+                <div class="gauge-container">
+                    <div class="gauge-body"></div>
+                    <div class="gauge-inner"></div>
+                    <div id="needle" class="gauge-needle" style="transform: rotate(-90deg);"></div>
+                </div>
+
+                <div class="px-10">
+                    <input type="range" min="1" max="4" value="2" id="agilidad-slider" oninput="actualizarAguja(this.value)">
+                    <div class="flex justify-between text-[8px] font-black text-slate-400 mt-2 uppercase">
+                        <span class="text-red-500">Crítico</span>
+                        <span class="text-amber-500">Regular</span>
+                        <span class="text-emerald-500">Excelente</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-xs font-black text-slate-800 uppercase text-center tracking-widest">2. Efectividad de la Solución Técnica</h3>
+                <div class="grid grid-cols-1 gap-3">
+                    <button type="button" class="border-2 border-slate-100 p-4 rounded-2xl text-[10px] font-black uppercase text-slate-400 hover:border-blue-600 hover:text-blue-600 transition-all">Resuelto Totalmente</button>
+                    <button type="button" class="border-2 border-slate-100 p-4 rounded-2xl text-[10px] font-black uppercase text-slate-400 hover:border-blue-600 hover:text-blue-600 transition-all">Resuelto con Ajustes</button>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-xs font-black text-slate-800 uppercase text-center tracking-widest">3. Recomendación (NPS)</h3>
+                <div class="flex justify-between gap-1 overflow-x-auto pb-2">
+                    <script>
+                        for(let i=1; i<=10; i++){
+                            document.write(`<button type="button" class="w-10 h-10 flex-shrink-0 border-2 border-slate-100 rounded-xl text-[10px] font-black hover:bg-blue-600 hover:text-white transition-all">${i}</button>`);
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="text-xs font-black text-slate-800 uppercase text-center tracking-widest">4. Observaciones Finales</h3>
+                <textarea rows="3" class="w-full bg-slate-50 border border-slate-100 p-4 rounded-2xl text-xs outline-none" placeholder="Su feedback es valioso..."></textarea>
+            </div>
+
+            <button onclick="enviarEncuesta()" class="w-full gelco-blue text-white py-5 rounded-3xl font-black text-xs uppercase shadow-2xl tracking-[0.2em] hover:scale-[1.02] transition-all">
+                Enviar Evaluación Final <i class="fas fa-check-circle ml-2"></i>
+            </button>
+        </div>
+    </main>
+
+    <script>
+        function actualizarAguja(valor) {
+            const needle = document.getElementById('needle');
+            const desc = document.getElementById('desc-agilidad');
+            const angulos = { "1": -90, "2": -30, "3": 30, "4": 90 };
+            const textos = { 
+                "1": "CRÍTICO: Demora excesiva en el soporte", 
+                "2": "REGULAR: Tiempo de respuesta mejorable", 
+                "3": "BUENO: Respuesta dentro de los plazos", 
+                "4": "EXCELENTE: Agilidad superior a lo esperado" 
+            };
+            needle.style.transform = `rotate(${angulos[valor]}deg)`;
+            desc.innerText = textos[valor];
+            desc.style.color = valor == 1 ? '#ef4444' : (valor <= 3 ? '#f59e0b' : '#10b981');
+        }
+
+        function enviarEncuesta() {
+            window.location.href = "index.html"; // O pantalla de gracias
+        }
+    </script>
+</body>
+</html>

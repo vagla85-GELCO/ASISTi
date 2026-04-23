@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASISti - Cierre y Envío al Cliente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gelco-blue { background-color: #004A99; }
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; backdrop-filter: blur(10px); }
+        .animate-pop { animation: pop 0.4s cubic-bezier(0.26, 0.53, 0.74, 1.48); }
+        @keyframes pop { from { opacity: 0; scale: 0.8; } to { opacity: 1; scale: 1; } }
+        .evidence-zone:hover { border-color: #004A99; background-color: #f0f7ff; }
+        .optional-badge { background-color: #f1f5f9; color: #64748b; font-size: 8px; padding: 2px 8px; border-radius: 4px; font-weight: 900; }
+    </style>
+</head>
+<body class="bg-slate-50 pb-20 font-sans text-left">
+
+    <header class="gelco-blue text-white p-5 shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center text-left">
+            <div class="flex items-center gap-4 text-left">
+                <div class="bg-white p-2 rounded-xl shadow-sm">
+                    <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+                        <path d="M30 20H70L65 40C65 40 85 45 85 65C85 85 70 90 50 90C30 90 15 85 15 65C15 45 35 40 35 40L30 20Z" fill="#004A99"/>
+                        <path d="M40 65H60M50 55V75" stroke="white" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="text-left">
+                    <h1 class="text-xl font-black tracking-tighter text-white leading-none">ASISti</h1>
+                    <p class="text-blue-200 text-[8px] uppercase font-bold tracking-widest mt-1">Fase Final: Cierre y Entrega</p>
+                </div>
+            </div>
+            <a href="index.html" class="hover:bg-white/10 p-2 rounded-lg transition-all text-white"><i class="fas fa-home text-lg"></i></a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4 md:p-8 space-y-8 text-left">
+        
+        <button onclick="window.history.back()" class="flex items-center gap-2 text-gray-500 hover:text-[#004A99] transition-all text-xs font-bold uppercase mb-4">
+            <i class="fas fa-chevron-left"></i> Volver a Gestión
+        </button>
+
+        <section class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 space-y-6 text-left">
+            <h2 class="text-slate-700 font-black text-xs uppercase border-b pb-2 flex items-center">
+                <i class="fas fa-clipboard-check mr-2 text-blue-600"></i> 1. Sustentación de Soporte Entregado
+            </h2>
+            
+            <div class="grid grid-cols-1 gap-6">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase mb-2 ml-1">Informe Técnico Autorizado</label>
+                        <div class="bg-blue-50 p-4 rounded-2xl border border-blue-100 flex items-center justify-between">
+                            <span class="text-xs font-bold text-blue-900 truncate"><i class="fas fa-file-pdf mr-2"></i> Informe_Final_Nestle_vFinal.pdf</span>
+                            <i class="fas fa-check-circle text-blue-600"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase mb-2 ml-1">Fecha de Notificación al Cliente</label>
+                        <input type="date" class="w-full bg-slate-50 border border-slate-100 p-4 rounded-2xl text-xs font-bold text-slate-600 outline-none">
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="block text-[10px] font-black text-slate-400 uppercase mb-1 ml-1">Soporte de Recepción / Envío</label>
+                    <div class="border-2 border-dashed border-slate-200 p-6 rounded-[2rem] text-center transition-all evidence-zone cursor-pointer">
+                        <input type="file" id="evidence-input" class="hidden">
+                        <label for="evidence-input" class="cursor-pointer">
+                            <i class="fas fa-cloud-upload-alt text-2xl text-slate-300 mb-2"></i>
+                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-tighter">Adjuntar Captura de Email / Guía Postal / Chat</p>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-black text-slate-700 uppercase flex items-center">
+                            <i class="fas fa-handshake mr-2 text-blue-600"></i> Acta de Socialización
+                        </h3>
+                        <span class="optional-badge">DOCUMENTO OPCIONAL</span>
+                    </div>
+                    <div class="bg-white border-2 border-dashed border-slate-200 p-4 rounded-2xl flex items-center justify-center group hover:border-blue-400 transition-all cursor-pointer">
+                        <input type="file" id="social-input" class="hidden">
+                        <label for="social-input" class="cursor-pointer flex items-center gap-3">
+                            <i class="fas fa-file-signature text-slate-300 group-hover:text-blue-500"></i>
+                            <span class="text-[10px] font-bold text-slate-400 group-hover:text-slate-600 uppercase">Subir Acta de Reunión con Cliente</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="text-left">
+                    <label class="block text-[10px] font-black text-slate-400 uppercase mb-2 ml-1">Comentarios y Observaciones Finales</label>
+                    <textarea rows="4" class="w-full bg-slate-50 border border-slate-100 p-5 rounded-3xl text-sm outline-none focus:bg-white transition-all shadow-inner" placeholder="Escriba aquí cualquier anotación relevante sobre el cierre del caso, próximos pasos sugeridos o feedback verbal del cliente..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-indigo-50 p-8 rounded-[2.5rem] shadow-sm border border-indigo-100 space-y-6 text-left">
+            <div class="flex justify-between items-center border-b border-indigo-200 pb-2">
+                <h2 class="text-indigo-800 font-black text-xs uppercase flex items-center">
+                    <i class="fas fa-star mr-2"></i> 2. Encuesta de Satisfacción
+                </h2>
+                <div class="flex items-center gap-2">
+                    <span class="text-[9px] font-black text-indigo-400 uppercase tracking-tighter">Enviar al finalizar</span>
+                    <input type="checkbox" checked class="w-4 h-4 accent-indigo-600">
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <label class="block text-[10px] font-black text-indigo-400 uppercase mb-2 ml-1">Emails Destinatarios para Evaluación</label>
+                <div class="relative">
+                    <i class="fas fa-at absolute left-5 top-5 text-indigo-300"></i>
+                    <input type="text" class="w-full bg-white border border-indigo-100 p-5 pl-12 rounded-3xl text-sm font-medium outline-none focus:ring-2 focus:ring-indigo-400" placeholder="lider.calidad@nestle.com, comercial.zona@gelco.com.co">
+                </div>
+            </div>
+        </section>
+
+        <div class="pt-4 flex justify-center">
+            <a href="historial_interacciones.html" class="flex items-center gap-2 text-cyan-700 bg-cyan-50 border border-cyan-200 px-8 py-4 rounded-2xl hover:bg-cyan-100 transition-all text-xs font-black uppercase tracking-widest shadow-sm">
+                <i class="fas fa-history text-lg"></i> Historial de Interacciones
+            </a>
+        </div>
+
+        <div class="pt-4">
+            <button onclick="finalizarCaso()" 
+                class="w-full gelco-blue text-white py-6 rounded-[2.5rem] font-black text-[11px] uppercase shadow-2xl tracking-[0.3em] hover:scale-[1.01] transition-all flex justify-center items-center">
+                Finalizar Caso y Enviar Encuesta <i class="fas fa-check-double ml-3"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <div id="cierreModal" class="modal-overlay">
+        <div class="modal-content bg-white rounded-[3rem] shadow-2xl overflow-hidden animate-pop">
+            <div class="p-10 text-center">
+                <div class="w-24 h-24 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner">
+                    <i class="fas fa-flag-checkered"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-800 uppercase tracking-tighter mb-2 text-center">¡Caso Cerrado Exitosamente!</h2>
+                <p class="text-sm text-slate-500 font-medium leading-relaxed mb-8 text-center px-4">
+                    Se han registrado los comentarios y evidencias. Las <span class="font-bold text-indigo-600">Encuestas de Satisfacción</span> se han enviado a los destinatarios.
+                </p>
+                <button onclick="irAlInicio()" class="w-full py-5 bg-[#004A99] text-white rounded-3xl font-black text-xs uppercase tracking-widest shadow-xl hover:bg-blue-800 transition-all text-center uppercase">
+                    Volver al Panel Principal
+                </button>
+            </div>
+            <div class="bg-slate-50 p-4 text-center border-t border-slate-100">
+                <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest text-center">Trazabilidad de Cierre Confirmada | ASISti 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center p-8 text-[9px] text-gray-400 uppercase tracking-[0.2em]">
+        ASISti | Gestión Técnica Grupo Gelco | 2026
+    </footer>
+
+    <script>
+        function finalizarCaso() {
+            const btn = document.querySelector('button[onclick="finalizarCaso()"]');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Procesando Cierre Final...';
+            setTimeout(() => {
+                document.getElementById('cierreModal').style.display = 'block';
+            }, 1500);
+        }
+        function irAlInicio() { window.location.href = "index.html"; }
+    </script>
+</body>
+</html>

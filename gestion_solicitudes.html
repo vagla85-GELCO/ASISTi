@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASISti - Gestión de Casos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gelco-blue { background-color: #004A99; }
+        .status-badge { font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; }
+        .row-hover:hover { background-color: #f8fafc; transition: all 0.2s; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans text-left">
+    
+    <header class="gelco-blue text-white p-5 shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 text-left">
+                <div class="bg-white p-2 rounded-xl shadow-sm">
+                    <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+                        <path d="M30 20H70L65 40C65 40 85 45 85 65C85 85 70 90 50 90C30 90 15 85 15 65C15 45 35 40 35 40L30 20Z" fill="#004A99"/>
+                        <path d="M40 65H60M50 55V75" stroke="white" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black tracking-tighter text-white leading-none">ASISti</h1>
+                    <p class="text-blue-200 text-[8px] uppercase font-bold tracking-widest mt-1 text-left">Panel de Control de Solicitudes</p>
+                </div>
+            </div>
+            <a href="index.html" class="bg-white/10 p-3 rounded-xl text-white"><i class="fas fa-home"></i></a>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-8 space-y-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center"><i class="fas fa-chart-line text-xl"></i></div>
+                <div>
+                    <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Satisfacción (NPS)</p>
+                    <p class="text-2xl font-black text-emerald-600">9.6</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center"><i class="fas fa-tasks text-xl"></i></div>
+                <div>
+                    <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Casos en Gestión</p>
+                    <p class="text-2xl font-black text-slate-800">24</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center"><i class="fas fa-history text-xl"></i></div>
+                <div>
+                    <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Eficiencia de Cierre</p>
+                    <p class="text-2xl font-black text-slate-800">92%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden text-left">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-slate-50/50 border-b border-slate-100">
+                        <th class="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Caso / ID Técnico</th>
+                        <th class="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Etapa del Proceso</th>
+                        <th class="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Balanced Scorecard</th>
+                        <th class="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50">
+                    
+                    <tr class="row-hover cursor-pointer" onclick="location.href='coordinacion_tecnica.html'">
+                        <td class="p-6">
+                            <div class="font-black text-slate-800 text-xs uppercase">Mejora Gelatina - Nestlé</div>
+                            <span class="text-[9px] text-slate-400 font-bold">M-AT-2026-0001</span>
+                        </td>
+                        <td class="p-6 text-left">
+                            <span class="status-badge bg-blue-100 text-blue-700 px-4 py-2 rounded-full"><i class="fas fa-users-gear mr-2"></i> Coordinación</span>
+                        </td>
+                        <td class="p-6 text-center italic text-[9px] text-slate-300 font-black">En Proceso</td>
+                        <td class="p-6 text-right"><i class="fas fa-chevron-right text-slate-300"></i></td>
+                    </tr>
+
+                    <tr class="row-hover cursor-pointer" onclick="location.href='consolidacion_aprobacion.html'">
+                        <td class="p-6">
+                            <div class="font-black text-slate-800 text-xs uppercase">Colágeno Hidrolizado - Bayer</div>
+                            <span class="text-[9px] text-slate-400 font-bold">B-AT-2026-0102</span>
+                        </td>
+                        <td class="p-6 text-left">
+                            <span class="status-badge bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full"><i class="fas fa-layer-group mr-2"></i> Consolidación</span>
+                        </td>
+                        <td class="p-6 text-center italic text-[9px] text-slate-300 font-black">Revisión Final</td>
+                        <td class="p-6 text-right"><i class="fas fa-chevron-right text-slate-300"></i></td>
+                    </tr>
+
+                    <tr class="row-hover cursor-pointer" onclick="location.href='cierre_envio.html'">
+                        <td class="p-6">
+                            <div class="font-black text-slate-800 text-xs uppercase">Estudio Viscosidad - Unilever</div>
+                            <span class="text-[9px] text-slate-400 font-bold">U-AT-2026-0215</span>
+                        </td>
+                        <td class="p-6 text-left">
+                            <span class="status-badge bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full"><i class="fas fa-paper-plane mr-2"></i> Cierre y Envío</span>
+                        </td>
+                        <td class="p-6 text-center italic text-[9px] text-slate-300 font-black">Pendiente Envío</td>
+                        <td class="p-6 text-right"><i class="fas fa-chevron-right text-slate-300"></i></td>
+                    </tr>
+
+                    <tr class="row-hover bg-slate-50/40 cursor-pointer" onclick="location.href='resultado_encuesta.html'">
+                        <td class="p-6">
+                            <div class="font-black text-slate-500 text-xs uppercase">Optimización Línea - Danone</div>
+                            <span class="text-[9px] text-slate-400 font-bold uppercase">D-AT-2026-0054</span>
+                        </td>
+                        <td class="p-6 text-left">
+                            <span class="status-badge bg-slate-200 text-slate-500 px-4 py-2 rounded-full">Finalizado</span>
+                        </td>
+                        <td class="p-6 text-center">
+                            <div class="inline-flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm hover:border-blue-600 transition-all">
+                                <i class="fas fa-tachometer-alt text-emerald-500"></i>
+                                <span class="text-xs font-black text-emerald-600">10.0</span>
+                                <span class="text-[8px] font-black text-slate-400 uppercase tracking-tighter">Detalle Encuesta</span>
+                            </div>
+                        </td>
+                        <td class="p-6 text-right"><i class="fas fa-external-link-alt text-slate-300"></i></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="text-center p-8 text-[9px] text-gray-400 uppercase tracking-[0.2em]">
+        ASISti | Gestión Técnica Grupo Gelco | 2026
+    </footer>
+</body>
+</html>

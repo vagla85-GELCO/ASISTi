@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASISti - Validación y Firma Final</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gelco-blue { background-color: #004A99; }
+        .decision-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .approve-active { border: 4px solid #10b981; background-color: #f0fdf4; }
+        .reject-active { border: 4px solid #ef4444; background-color: #fef2f2; }
+        .signature-stamp { 
+            border: 3px solid #004A99; 
+            color: #004A99; 
+            padding: 10px; 
+            border-radius: 10px; 
+            transform: rotate(-15deg); 
+            font-family: 'Courier New', Courier, monospace;
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 pb-20 font-sans text-left">
+
+    <header class="gelco-blue text-white p-5 shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center text-left">
+            <div class="flex items-center gap-4 text-left">
+                <div class="bg-white p-2 rounded-xl shadow-sm">
+                    <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+                        <path d="M30 20H70L65 40C65 40 85 45 85 65C85 85 70 90 50 90C30 90 15 85 15 65C15 45 35 40 35 40L30 20Z" fill="#004A99"/>
+                        <path d="M40 65H60M50 55V75" stroke="white" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="text-left">
+                    <h1 class="text-xl font-black tracking-tighter text-white leading-none">ASISti</h1>
+                    <p class="text-blue-200 text-[8px] uppercase font-bold tracking-widest mt-1">Fase 5: Validación y Firma Gerencial</p>
+                </div>
+            </div>
+            <a href="index.html" class="hover:bg-white/10 p-2 rounded-lg transition-all text-white">
+                <i class="fas fa-home text-lg"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4 md:p-8 space-y-8 text-left">
+        
+        <button onclick="window.history.back()" class="flex items-center gap-2 text-gray-500 hover:text-[#004A99] transition-all text-xs font-bold uppercase mb-4">
+            <i class="fas fa-chevron-left"></i> Volver a solicitudes
+        </button>
+
+        <section class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 space-y-6 text-left">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-50 pb-4">
+                <div class="text-left">
+                    <h2 class="text-lg font-black text-slate-800 uppercase leading-none">Revisión de Informe Consolidado</h2>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase mt-1 tracking-widest">Caso: M-AT-2026-0001 | Nestlé S.A.</p>
+                </div>
+                <span class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-[10px] font-black uppercase">Pendiente de Firma</span>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="far fa-file-pdf text-3xl text-red-500"></i>
+                    <div class="text-left">
+                        <p class="text-xs font-bold text-slate-700 uppercase">Informe_Final_Nestle_v1.pdf</p>
+                        <p class="text-[9px] text-slate-400 font-medium italic uppercase tracking-tighter">Consolidado por: Dr. Químico Industrial</p>
+                    </div>
+                </div>
+                <button class="bg-white border border-slate-200 p-3 rounded-xl hover:bg-blue-50 transition-all shadow-sm">
+                    <i class="fas fa-download text-blue-600"></i>
+                </button>
+            </div>
+        </section>
+
+        <section class="space-y-6 text-left">
+            <h2 class="text-slate-700 font-black text-xs uppercase tracking-widest px-2">Dictamen de Aprobación</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <label onclick="seleccionarAccion('aprobar')" id="card-aprobar" class="decision-card bg-white p-8 rounded-[2.5rem] shadow-sm border-2 border-transparent cursor-pointer hover:shadow-md text-center">
+                    <input type="radio" name="decision" class="hidden">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="font-black text-slate-800 text-xs uppercase tracking-widest">Aprobar y Firmar</h3>
+                    <p class="text-[9px] text-slate-400 mt-2 italic font-medium">El informe se enviará automáticamente al cliente.</p>
+                </label>
+
+                <label onclick="seleccionarAccion('rechazar')" id="card-rechazar" class="decision-card bg-white p-8 rounded-[2.5rem] shadow-sm border-2 border-transparent cursor-pointer hover:shadow-md text-center">
+                    <input type="radio" name="decision" class="hidden">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3 class="font-black text-slate-800 text-xs uppercase tracking-widest">Rechazar para Ajustes</h3>
+                    <p class="text-[9px] text-slate-400 mt-2 italic font-medium">El caso volverá a la fase de consolidación comercial.</p>
+                </label>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 space-y-3">
+                <label class="block text-[10px] font-black text-slate-400 uppercase mb-1 ml-1">Observaciones / Feedback de la Gerencia</label>
+                <textarea id="feedback" rows="4" class="w-full bg-slate-50 border border-slate-100 p-5 rounded-3xl text-sm outline-none focus:bg-white transition-all" placeholder="Escriba aquí los comentarios adicionales o las razones del rechazo técnico..."></textarea>
+            </div>
+        </section>
+
+        <div class="pt-4 flex justify-center text-left">
+            <a href="historial_interacciones.html" class="flex items-center gap-2 text-cyan-700 bg-cyan-50 border border-cyan-200 px-8 py-4 rounded-2xl hover:bg-cyan-100 transition-all text-xs font-black uppercase tracking-widest shadow-sm">
+                <i class="fas fa-history text-lg"></i> Historial de Interacciones
+            </a>
+        </div>
+
+        <div class="pt-4 text-left">
+            <button onclick="ejecutarAccionFinal()" class="w-full gelco-blue text-white py-6 rounded-[2.5rem] font-black text-[11px] uppercase shadow-2xl tracking-[0.3em] hover:scale-[1.01] transition-all flex justify-center items-center">
+                Confirmar Dictamen Final <i class="fas fa-signature ml-3"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <div id="successModal" class="modal-overlay hidden fixed inset-0 bg-black/80 z-[1000] backdrop-blur-md flex items-center justify-center">
+        <div class="bg-white rounded-[3rem] p-10 max-w-sm w-full text-center shadow-2xl animate-pop">
+            <div id="modalIcon" class="w-20 h-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-6"></div>
+            <h2 id="modalTitle" class="text-xl font-black text-slate-800 uppercase tracking-tighter mb-2"></h2>
+            <p id="modalDesc" class="text-xs text-slate-500 font-medium mb-8 leading-relaxed"></p>
+            
+            <div id="stampArea" class="signature-stamp mx-auto mb-8 font-black">
+                APROBADO<br>GELCO TÉCNICO<br>2026
+            </div>
+
+            <button onclick="window.location.href='index.html'" class="w-full py-4 bg-[#004A99] text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">
+                Finalizar Proceso
+            </button>
+        </div>
+    </div>
+
+    <footer class="text-center p-8 text-[9px] text-gray-400 uppercase tracking-[0.2em] text-left">
+        ASISti | Gestión Técnica Grupo Gelco | 2026
+    </footer>
+
+    <script>
+        let dictamen = null;
+
+        function seleccionarAccion(tipo) {
+            dictamen = tipo;
+            const cardAprobar = document.getElementById('card-aprobar');
+            const cardRechazar = document.getElementById('card-rechazar');
+
+            if (tipo === 'aprobar') {
+                cardAprobar.classList.add('approve-active');
+                cardRechazar.classList.remove('reject-active');
+            } else {
+                cardRechazar.classList.add('reject-active');
+                cardAprobar.classList.remove('approve-active');
+            }
+        }
+
+        function ejecutarAccionFinal() {
+            if (!dictamen) {
+                alert("Por favor seleccione un dictamen (Aprobar o Rechazar).");
+                return;
+            }
+
+            const modal = document.getElementById('successModal');
+            const icon = document.getElementById('modalIcon');
+            const title = document.getElementById('modalTitle');
+            const desc = document.getElementById('modalDesc');
+            const stamp = document.getElementById('stampArea');
+
+            if (dictamen === 'aprobar') {
+                icon.className = "w-20 h-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 bg-emerald-100 text-emerald-600";
+                icon.innerHTML = '<i class="fas fa-check-double"></i>';
+                title.innerText = "¡Informe Aprobado!";
+                desc.innerText = "La firma digital ha sido aplicada. El cliente recibirá la notificación oficial de la asistencia técnica.";
+                stamp.style.display = "block";
+            } else {
+                icon.className = "w-20 h-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 bg-red-100 text-red-600";
+                icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+                title.innerText = "¡Solicitud Rechazada!";
+                desc.innerText = "Se han notificado los ajustes necesarios al área comercial para la corrección del informe.";
+                stamp.style.display = "none";
+            }
+
+            modal.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

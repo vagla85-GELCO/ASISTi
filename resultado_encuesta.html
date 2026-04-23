@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASISti - Análisis Balanced Scorecard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gelco-blue { background-color: #004A99; }
+        .gauge-visual { width: 200px; height: 100px; background: conic-gradient(from -90deg, #ef4444 0deg, #f59e0b 60deg, #10b981 120deg, #e2e8f0 120deg); border-radius: 100px 100px 0 0; position: relative; }
+        .gauge-visual::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 80px; background: #fff; border-radius: 80px 80px 0 0; }
+        .needle-fixed { width: 4px; height: 80px; background: #004A99; position: absolute; bottom: 0; left: 50%; transform-origin: bottom center; transform: rotate(90deg); z-index: 10; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-50 pb-20 font-sans text-left">
+
+    <header class="gelco-blue text-white p-5 shadow-md flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <div class="bg-white p-2 rounded-xl"><i class="fas fa-tachometer-alt text-[#004A99]"></i></div>
+            <h1 class="text-lg font-black tracking-tighter uppercase">Balanced Scorecard: Resultados</h1>
+        </div>
+        <button onclick="window.history.back()" class="text-white opacity-50 hover:opacity-100"><i class="fas fa-times text-xl"></i></button>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-4 md:p-8 space-y-6 text-left">
+        
+        <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12">
+            <div class="text-center">
+                <div class="gauge-visual">
+                    <div class="needle-fixed"></div>
+                </div>
+                <p class="text-[12px] font-black text-emerald-600 mt-4 uppercase">Estado: Excelente</p>
+            </div>
+            
+            <div class="flex-1 space-y-4">
+                <div class="border-l-4 border-emerald-500 pl-4">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Métrica: Agilidad Operativa</p>
+                    <p class="text-sm font-bold text-slate-700 mt-1">"El cliente percibe una respuesta inmediata y superior a la media de la industria."</p>
+                </div>
+                <div class="bg-emerald-50 p-4 rounded-2xl">
+                    <p class="text-[9px] font-black text-emerald-700 uppercase">Interpretación Balanced Scorecard:</p>
+                    <p class="text-xs text-emerald-800 mt-1 font-medium">Zona Verde - El proceso cumple con los estándares de excelencia de Gelco Group.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 space-y-4">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">2. Efectividad Técnica</p>
+                <div class="flex items-center gap-3 text-emerald-600">
+                    <i class="fas fa-check-double text-2xl"></i>
+                    <p class="text-xs font-black uppercase">Resuelto Totalmente</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 space-y-4">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">3. Índice de Recomendación (NPS)</p>
+                <div class="flex items-center justify-center gap-2">
+                    <span class="text-4xl font-black text-[#004A99]">10</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Promotor Activo</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 border-b pb-2"><i class="fas fa-comment-dots mr-2"></i> 4. Feedback Directo del Cliente</p>
+            <p class="text-sm text-slate-600 italic leading-relaxed">
+                "La atención fue rápida y el equipo técnico de Gelco demostró un dominio absoluto del análisis de viscosidad. La solución implementada en planta ha sido estable."
+            </p>
+        </div>
+
+        <div class="pt-4 flex justify-center">
+            <a href="historial_interacciones.html" class="flex items-center gap-2 text-cyan-700 bg-cyan-50 border border-cyan-200 px-8 py-4 rounded-2xl hover:bg-cyan-100 transition-all text-xs font-black uppercase tracking-widest shadow-sm">
+                <i class="fas fa-history text-lg"></i> Historial de Interacciones
+            </a>
+        </div>
+    </main>
+
+    <footer class="text-center p-8 text-[9px] text-gray-400 uppercase tracking-[0.2em]">
+        ASISti Analytics | Inteligencia de Servicio | 2026
+    </footer>
+</body>
+</html>

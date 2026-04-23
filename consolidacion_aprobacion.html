@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASISti - Consolidación y Aprobación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gelco-blue { background-color: #004A99; }
+        .report-card { border-left: 4px solid #004A99; transition: all 0.3s; }
+        .report-card:hover { background-color: #f0f7ff; transform: translateX(5px); }
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; backdrop-filter: blur(8px); }
+        .modal-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; }
+        .animate-pop { animation: pop 0.4s cubic-bezier(0.26, 0.53, 0.74, 1.48); }
+        @keyframes pop { from { opacity: 0; scale: 0.8; } to { opacity: 1; scale: 1; } }
+    </style>
+</head>
+<body class="bg-slate-50 pb-20 font-sans text-left">
+
+    <header class="gelco-blue text-white p-5 shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center text-left">
+            <div class="flex items-center gap-4 text-left">
+                <div class="bg-white p-2 rounded-xl shadow-sm">
+                    <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+                        <path d="M30 20H70L65 40C65 40 85 45 85 65C85 85 70 90 50 90C30 90 15 85 15 65C15 45 35 40 35 40L30 20Z" fill="#004A99"/>
+                        <path d="M40 65H60M50 55V75" stroke="white" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="text-left">
+                    <h1 class="text-xl font-black tracking-tighter text-white leading-none text-left">ASISti</h1>
+                    <p class="text-blue-200 text-[8px] uppercase font-bold tracking-widest mt-1 text-left">Fase 4: Consolidación y Aprobación</p>
+                </div>
+            </div>
+            <a href="index.html" class="hover:bg-white/10 p-2 rounded-lg transition-all text-white">
+                <i class="fas fa-home text-lg"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4 md:p-8 space-y-8 text-left">
+        <button onclick="window.history.back()" class="flex items-center gap-2 text-gray-500 hover:text-[#004A99] transition-all text-xs font-bold uppercase mb-4">
+            <i class="fas fa-chevron-left"></i> Volver a Gestión
+        </button>
+
+        <section class="space-y-4 text-left">
+            <h2 class="text-slate-700 font-black text-xs uppercase border-b pb-2 flex items-center text-left">
+                <i class="fas fa-file-medical-alt mr-2 text-blue-600"></i> 1. Informes Técnicos
+            </h2>
+            <div class="grid grid-cols-1 gap-3">
+                
+                <div class="report-card bg-white p-4 rounded-2xl shadow-sm flex justify-between items-center">
+                    <div class="text-left">
+                        <p class="text-[9px] font-black text-blue-600 uppercase">Investigación y Desarrollo (I+D)</p>
+                        <h3 class="text-xs font-bold text-slate-800 uppercase">Reporte de Estabilidad - E. Oliveros</h3>
+                    </div>
+                    <button class="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-[10px] font-black uppercase hover:bg-blue-100 transition-all">Ver Informe</button>
+                </div>
+
+                <div class="report-card bg-white p-4 rounded-2xl shadow-sm flex justify-between items-center" style="border-left-color: #10b981;">
+                    <div class="text-left">
+                        <p class="text-[9px] font-black text-emerald-600 uppercase">Control de Calidad</p>
+                        <h3 class="text-xs font-bold text-slate-800 uppercase">Certificado de Análisis (CoA) - D. Parra</h3>
+                    </div>
+                    <button class="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-xl text-[10px] font-black uppercase hover:bg-emerald-100 transition-all">Ver Informe</button>
+                </div>
+
+                <div class="report-card bg-white p-4 rounded-2xl shadow-sm flex justify-between items-center" style="border-left-color: #f59e0b;">
+                    <div class="text-left">
+                        <p class="text-[9px] font-black text-amber-600 uppercase">Área de Producción</p>
+                        <h3 class="text-xs font-bold text-slate-800 uppercase">Bitácora de Lotes y Rendimientos - Jefe Planta</h3>
+                    </div>
+                    <button class="bg-amber-50 text-amber-700 px-4 py-2 rounded-xl text-[10px] font-black uppercase hover:bg-amber-100 transition-all">Ver Informe</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 space-y-6 text-left">
+            <h2 class="text-slate-700 font-black text-xs uppercase border-b pb-2 flex items-center text-left">
+                <i class="fas fa-file-contract mr-2 text-blue-600"></i> 2. Consolidación de Informe Final
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <div class="text-left">
+                    <label class="block text-[10px] font-black text-slate-400 uppercase mb-2 ml-1">Responsable de Consolidar</label>
+                    <select class="w-full bg-slate-50 border border-slate-100 p-4 rounded-2xl text-xs font-bold text-blue-900 outline-none">
+                        <option>Dr. Químico Industrial (Gestor)</option>
+                        <option>Ejecutivo Comercial Senior</option>
+                    </select>
+                </div>
+                <div class="text-left">
+                    <label class="block text-[10px] font-black text-slate-400 uppercase mb-2 ml-1">Adjuntar Archivos</label>
+                    <div class="relative">
+                        <input type="file" id="finalDoc" class="hidden" multiple>
+                        <label for="finalDoc" class="flex items-center justify-between w-full bg-slate-50 border border-slate-100 p-4 rounded-2xl text-xs font-bold text-slate-500 cursor-pointer hover:bg-blue-50 transition-all">
+                            <span>Seleccionar archivos finales...</span>
+                            <i class="fas fa-paperclip text-blue-600"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <textarea rows="5" class="w-full bg-slate-50 border border-slate-100 p-5 rounded-3xl text-sm outline-none" placeholder="Escriba aquí el veredicto final y recomendaciones para el cliente..."></textarea>
+        </section>
+
+        <section class="bg-amber-50 border border-amber-100 p-8 rounded-[2.5rem] shadow-sm space-y-4 text-left">
+            <h2 class="text-amber-800 font-black text-xs uppercase border-b border-amber-200 pb-2 flex items-center text-left">
+                <i class="fas fa-user-shield mr-2"></i> 3. Solicitud de Firma y Aprobación Final
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                <div class="text-left">
+                    <label class="block text-[10px] font-black text-amber-600 uppercase mb-1 ml-1">Autoridad de Aprobación</label>
+                    <select class="w-full bg-white border border-amber-200 p-4 rounded-2xl text-xs font-bold text-amber-900 outline-none">
+                        <option>Gerente Técnico Corporativo</option>
+                        <option>Director de Calidad</option>
+                        <option>Gerente de Planta</option>
+                    </select>
+                </div>
+                <div class="flex items-end text-left">
+                    <p class="text-[9px] text-amber-700 italic leading-tight text-left">
+                        * Al solicitar la firma, se notificará al responsable para la validación de los archivos adjuntos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="pt-4 flex justify-center">
+            <a href="historial_interacciones.html" class="flex items-center gap-2 text-cyan-700 bg-cyan-50 border border-cyan-200 px-8 py-4 rounded-2xl hover:bg-cyan-100 transition-all text-xs font-black uppercase tracking-widest shadow-sm">
+                <i class="fas fa-history text-lg"></i> Historial de Interacciones
+            </a>
+        </div>
+
+        <div class="pt-4 text-left">
+            <button onclick="solicitarFirmaFinal()" class="w-full gelco-blue text-white py-6 rounded-[2.5rem] font-black text-[11px] uppercase shadow-2xl tracking-[0.3em] hover:scale-[1.01] transition-all flex justify-center items-center">
+                Solicitar Firma y Enviar para Aprobación <i class="fas fa-signature ml-3"></i>
+            </button>
+        </div>
+    </main>
+
+    <div id="firmaModal" class="modal-overlay">
+        <div class="modal-content bg-white rounded-[3rem] shadow-2xl overflow-hidden animate-pop">
+            <div class="p-10 text-center">
+                <div class="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner">
+                    <i class="fas fa-check-double"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-800 uppercase tracking-tighter mb-2 text-center">¡Informe Consolidado Enviado!</h2>
+                <p class="text-sm text-slate-500 font-medium leading-relaxed mb-8 text-center">
+                    Se ha notificado exitosamente al responsable para la <span class="font-bold text-blue-600">aprobación final y firma</span>.
+                </p>
+                <button onclick="irAlInicio()" class="w-full py-5 bg-[#004A99] text-white rounded-3xl font-black text-xs uppercase tracking-widest shadow-xl hover:bg-blue-800 transition-all text-center">
+                    Entendido - Volver al Panel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center p-8 text-[9px] text-gray-400 uppercase tracking-[0.2em] text-left">
+        ASISti | Gestión Técnica Grupo Gelco | 2026
+    </footer>
+
+    <script>
+        function solicitarFirmaFinal() {
+            const btn = document.querySelector('button[onclick="solicitarFirmaFinal()"]');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Procesando Consolidado...';
+            setTimeout(() => { 
+                document.getElementById('firmaModal').style.display = 'block'; 
+            }, 1500);
+        }
+        function irAlInicio() { window.location.href = "index.html"; }
+    </script>
+</body>
+</html>

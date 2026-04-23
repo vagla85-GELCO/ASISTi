@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GELCO - Encuesta de Satisfacción</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .likert-btn:hover { background-color: #004A99; color: white; border-color: #004A99; }
+        .likert-active { background-color: #004A99; color: white; border-color: #004A99; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+
+    <main class="max-w-xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div class="bg-[#004A99] p-8 text-center text-white">
+            <h1 class="text-xl font-bold tracking-widest uppercase">GELCO GROUP</h1>
+            <p class="text-blue-200 text-xs mt-2 uppercase tracking-tight">Encuesta de Satisfacción Técnica</p>
+        </div>
+
+        <div class="p-8 space-y-8 text-left">
+            <div class="text-center">
+                <p class="text-sm text-gray-600">Su opinión es fundamental para mejorar nuestros procesos de asistencia técnica y desarrollo de productos.</p>
+            </div>
+
+            <div class="space-y-4">
+                <p class="text-xs font-black text-gray-700 uppercase tracking-wider">1. ¿Qué tan satisfecho está con la solución técnica brindada?</p>
+                <div class="grid grid-cols-5 gap-2">
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">Muy Insatisfecho</button>
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">Insatisfecho</button>
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">Neutral</button>
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">Satisfecho</button>
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">Muy Satisfecho</button>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <p class="text-xs font-black text-gray-700 uppercase tracking-wider">2. El tiempo de respuesta cumplió con sus expectativas:</p>
+                <div class="grid grid-cols-5 gap-2">
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">Totalmente en desacuerdo</button>
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">En desacuerdo</button>
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">Neutral</button>
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">De acuerdo</button>
+                    <button class="likert-btn border-2 p-3 rounded-xl text-[10px] font-bold transition-all">Totalmente de acuerdo</button>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <p class="text-xs font-black text-gray-700 uppercase tracking-wider">3. ¿Tiene algún comentario adicional o sugerencia de mejora?</p>
+                <textarea class="w-full bg-gray-50 border border-gray-200 p-4 rounded-2xl text-sm h-24 outline-none focus:ring-2 ring-blue-500" placeholder="Escriba aquí..."></textarea>
+            </div>
+
+            <button onclick="alert('Muchas gracias. Sus respuestas han sido enviadas al equipo técnico de GELCO.')" class="w-full bg-[#004A99] text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:bg-blue-800 transition-all">
+                Enviar Evaluación
+            </button>
+        </div>
+    </main>
+
+</body>
+</html>
